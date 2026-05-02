@@ -1,0 +1,15 @@
+{
+  "name": "LaTeX",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/resume",
+  "overrideCommand": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "ms-azuretools.vscode-containers"
+      ],
+    }
+  }
+}

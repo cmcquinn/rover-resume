@@ -1,0 +1,17 @@
+services:
+  app:
+    platform: linux/amd64
+    hostname: latex-devcontainer
+    environment:
+      HISTFILE: /commandhistory/.zsh_history
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ..:/workspaces/resume
+      - zsh-history:/commandhistory
+      - ~/.ssh:/home/flir/.ssh:ro
+
+volumes:
+  zsh-history:
