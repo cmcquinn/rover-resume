@@ -12,7 +12,7 @@
 
 \documentclass[11pt]{article} % fontsize 10pt/11pt/12pt
 
-\usepackage[margin=1in, a4paper]{geometry}
+\usepackage[margin=0.5in, letterpaper]{geometry}
 \setcounter{secnumdepth}{0} % remove section numbering
 \usepackage{titlesec}
 \titlespacing{\subsection}{0pt}{*0}{*0} % remove vertical spacing above and below
@@ -23,52 +23,72 @@
 \setlist[itemize]{noitemsep,left=0pt .. \parindent}
 \pagestyle{empty} % remove page number
 \pdfgentounicode=1
-
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
 
 \begin{document}
 
 \begin{center}
 	\begin{minipage}{0.5\textwidth}
-		{\Huge\bfseries
-			BASE ROVER % Name Here
+		{\LARGE\bfseries
+			CAMERON MCQUINN
 		} \\ \medskip
-		Resume Template % Title [optional]
+		Embedded Software Engineer % Title [optional]
 	\end{minipage} \hfill
 	\begin{minipage}{0.4\textwidth}
 		\raggedleft
-		Email: base@rover.com \\
-		Mobile: 123 456 7890 \\
-		LinkedIn: linkedin.com/username \\
-		GitHub: github.com/username
+		Email: \href{mailto:cameron.mcquinn@gmail.com}{cameron.mcquinn@gmail.com} \\
+		Mobile: \href{tel:+16506653977}{650 665 3977} \\
+		\faLinkedin: \href{https://www.linkedin.com/in/cameron-mcquinn}{linkedin.com/in/cameron-mcquinn} \\
+		\faGithub: \href{https://github.com/cmcquinn}{github.com/cmcquinn}
 	\end{minipage}
 \end{center}
 
 \section{Education}
 %=================%
-\subsection{University of Post Graduation, City $|$ {\normalfont\itshape Degree Name} \hfill 2024}
+\subsection{Brigham Young University \textbar{} {\normalfont\itshape B.S. in Computer Engineering, Minor in Mathematics} \hfill 2021}
 \begin{itemize}
-	\item Cumulative GPA: 3.69
-	\item \textit{magna cum laude} 
-  \item Related Coursework: Computer Architecture, Database Management, Cybersecurity
+  \item Engineering: Linux-based Embedded Systems, Wireless Networks, Computer Architecture, Circuit Analysis
+  \item Professional Development: Leadership foundations, Innovation and interdisciplinary collaboration
+  \item Mathematics: Linear Algebra, Multivariable Calculus, Differential Equations
+  \item Research: Effects of Space Radiation on Commercial Off-the-Shelf vs Radiation-Hardened Components
 \end{itemize}
+
+\section{Skills}
+%=================%
+\begin{multicols}{3}
+	\begin{itemize}
+		\item C/C++ (5 years)
+		\item Python (5 years)
+		\item Yocto, BitBake, meta-tegra
+		\item ARM Cortex-M / STM32
+		\item NVIDIA Jetson
+		\item I2C, UART, GPIO, PWM, SPI
+	\end{itemize}
+\end{multicols}
 
 \section{Experience}
 %=================%
-\subsection{Company ABC \hfill City, State (or Remote)}
-\subsubsection{Position Title \hfill  Month Year - Month Year}
+\subsection{Teledyne FLIR \hfill Orem, UT}
+\subsubsection{Embedded Software Engineer \hfill  July 2021 - Present}
 \begin{itemize}
-	\item Beginning with your most recent position, describe your experience, skills, and resulting outcomes in bullet or paragraph form.
-	\item Begin each line with an action verb and include details that will help the reader understand your accomplishments, skills, knowledge, abilities, or achievements.
-	\item Quantify where possible. Do not use personal pronouns; each line should be a phrase rather than a full sentence.
+	\item Supported bring-up of Jetson Orin NX-based embedded Linux hardware, including Yocto/meta-tegra integration, external storage flashing, partition layout debugging, UEFI boot behavior, and recovery of failed flash/update states.
+	\item Designed and debugged Yocto/SWUpdate-based field update workflows for Jetson systems, including rootfs, boot image, DTB, Docker image deployment, integrity checks, and storage/partition-size constraints.
+	\item Investigated secure boot and trusted execution issues involving OP-TEE, EKS partitions, OEM signing, key provisioning behavior, and low-level boot/debug failures.
+	\item Built extensible hardware-in-the-loop and manufacturing-style test infrastructure for embedded systems, automating board validation, result reporting, and regression testing across hardware revisions.
+	\item Designed and implemented a system for updating MCU firmware by sending firmware data over an internal messaging system.
+	\item Implemented I2C drivers for battery-management ICs, enabling estimation of remaining battery on UAVs.
+	\item Designed a portable HAL for PWM peripherals across three STM32 microcontroller families, abstracting register/peripheral differences while preserving low-level control.
+	\item Debugged hardware/firmware interactions across I2C, UART, GPIO, PWM, and power-management interfaces using driver instrumentation, logs, and board-level test automation.
+	\item Refactored C++ application code to reduce compile time by 44\% and improved runtime performance by 32\% by replacing virtual dispatch with direct calls.
 \end{itemize}
 
-\subsection{Position Title \hfill Mar 2020 - Nov 2022}
-\subsubsection{Company XYZ \hfill City, State}
+\subsection{Teledyne FLIR \hfill Orem, UT}
+\subsubsection{Software Engineering Intern \hfill July 2020 - July 2021}
 \begin{itemize}
-	\item XYZ method - Accomplished [X] as measured by [Y], by doing [Z].
-	\item CAR method - Context, Action, Result. 
-	\item STAR method - Situation, Task, Action, Result.
-	\item Be consistent with headers and sub-headers. 
+	\item Designed and programmed a graphical sensor test application using Python and Qt
+	\item Created Python scripts allowing automated integration testing of assembled PCBs
 \end{itemize}
 
 \section{Certification \& Awards}
