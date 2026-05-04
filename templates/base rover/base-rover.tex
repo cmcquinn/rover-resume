@@ -15,6 +15,7 @@
 \usepackage[margin=0.5in, letterpaper]{geometry}
 \setcounter{secnumdepth}{0} % remove section numbering
 \usepackage{titlesec}
+\titlespacing*{\section} {0pt}{1.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
 \titlespacing{\subsection}{0pt}{*0}{*0} % remove vertical spacing above and below
 \titlespacing{\subsubsection}{0pt}{*0}{*0}
 \titleformat{\section}{\large\bfseries\uppercase}{}{}{}[\titlerule]
@@ -24,8 +25,17 @@
 \pagestyle{empty} % remove page number
 \pdfgentounicode=1
 \usepackage{multicol}
-\usepackage{hyperref}
-\usepackage{fontawesome5}
+\usepackage[dvipsnames]{xcolor} % xcolor.pdf Sec.4 Colors by Name
+
+\usepackage[bookmarks=false]{hyperref} % [imp!]
+\hypersetup{ % https://en.wikibooks.org/wiki/LaTeX/Hyperlinks
+    colorlinks=true,
+    urlcolor=Black	,
+    pdftitle={My Resume},
+}
+
+\usepackage{enumitem}
+\setlist{nosep}
 
 \begin{document}
 
@@ -40,14 +50,18 @@
 		\raggedleft
 		Email: \href{mailto:cameron.mcquinn@gmail.com}{cameron.mcquinn@gmail.com} \\
 		Mobile: \href{tel:+16506653977}{650 665 3977} \\
-		\faLinkedin: \href{https://www.linkedin.com/in/cameron-mcquinn}{linkedin.com/in/cameron-mcquinn} \\
-		\faGithub: \href{https://github.com/cmcquinn}{github.com/cmcquinn}
+		LinkedIn: \href{https://www.linkedin.com/in/cameron-mcquinn}{linkedin.com/in/cameron-mcquinn} \\
+		GitHub: \href{https://github.com/cmcquinn}{github.com/cmcquinn}
 	\end{minipage}
 \end{center}
 
 \section{Education}
 %=================%
-\subsection{Brigham Young University \textbar{} {\normalfont\itshape B.S. in Computer Engineering, Minor in Mathematics} \hfill 2021}
+\subsection{University of Colorado Boulder \textbar{} {\normalfont\itshape Graduate Certificate in Satellite System Design} \hfill 2024 - 2027}
+\begin{itemize}
+  \item Engineering: Introduction to GNSS, Orbital Mechanics
+\end{itemize}
+\subsection{Brigham Young University \textbar{} {\normalfont\itshape B.S. in Computer Engineering, Minor in Mathematics} \hfill 2016 - 2021}
 \begin{itemize}
   \item Engineering: Linux-based Embedded Systems, Wireless Networks, Computer Architecture, Circuit Analysis
   \item Professional Development: Leadership foundations, Innovation and interdisciplinary collaboration
@@ -57,13 +71,14 @@
 
 \section{Skills}
 %=================%
+\setlength{\multicolsep}{0pt} % Set to 0pt or a smaller value
 \begin{multicols}{3}
 	\begin{itemize}
 		\item C/C++ (5 years)
 		\item Python (5 years)
 		\item Yocto, BitBake, meta-tegra
 		\item ARM Cortex-M / STM32
-		\item NVIDIA Jetson
+		\item SWUpdate, OP-TEE
 		\item I2C, UART, GPIO, PWM, SPI
 	\end{itemize}
 \end{multicols}
@@ -73,15 +88,15 @@
 \subsection{Teledyne FLIR \hfill Orem, UT}
 \subsubsection{Embedded Software Engineer \hfill  July 2021 - Present}
 \begin{itemize}
-	\item Supported bring-up of Jetson Orin NX-based embedded Linux hardware, including Yocto/meta-tegra integration, external storage flashing, partition layout debugging, UEFI boot behavior, and recovery of failed flash/update states.
-	\item Designed and debugged Yocto/SWUpdate-based field update workflows for Jetson systems, including rootfs, boot image, DTB, Docker image deployment, integrity checks, and storage/partition-size constraints.
-	\item Investigated secure boot and trusted execution issues involving OP-TEE, EKS partitions, OEM signing, key provisioning behavior, and low-level boot/debug failures.
-	\item Built extensible hardware-in-the-loop and manufacturing-style test infrastructure for embedded systems, automating board validation, result reporting, and regression testing across hardware revisions.
-	\item Designed and implemented a system for updating MCU firmware by sending firmware data over an internal messaging system.
-	\item Implemented I2C drivers for battery-management ICs, enabling estimation of remaining battery on UAVs.
-	\item Designed a portable HAL for PWM peripherals across three STM32 microcontroller families, abstracting register/peripheral differences while preserving low-level control.
-	\item Debugged hardware/firmware interactions across I2C, UART, GPIO, PWM, and power-management interfaces using driver instrumentation, logs, and board-level test automation.
-	\item Refactored C++ application code to reduce compile time by 44\% and improved runtime performance by 32\% by replacing virtual dispatch with direct calls.
+	\item Brought up NVIDIA Jetson Orin NX embedded Linux hardware using Yocto/meta-tegra and external flashing
+	\item Debugged Jetson boot, partitioning, flashing, and recovery issues across production hardware configurations
+	\item Created an interface to an OP-TEE-based secure data storage system for flight logs and sensitive data
+	\item Built Yocto/SWUpdate field-update workflows for rootfs, boot, DTB, Docker images, and integrity checks
+	\item Built HIL and manufacturing-style test infrastructure for board validation, reporting, and regression testing
+	\item Designed secure MCU firmware-update support with rollback over an internal messaging system
+	\item Implemented I2C battery-management IC drivers for UAV power estimation
+	\item Created a portable PWM HAL across three STM32 microcontroller families
+	\item Debugged I2C, UART, GPIO, PWM, and power-management issues using logs and board-level instrumentation
 \end{itemize}
 
 \subsection{Teledyne FLIR \hfill Orem, UT}
@@ -91,30 +106,36 @@
 	\item Created Python scripts allowing automated integration testing of assembled PCBs
 \end{itemize}
 
+\subsection{Brigham Young University \hfill Provo, UT}
+\subsubsection{Senior Capstone Project \hfill September 2019 - April 2020}
+\begin{itemize}
+	\item Created a wireless data transmission system that met strict environmental and performance requirements
+	\item Learned to draw and effectively organize complex schematic diagrams in order to create functional PCBs
+	\item Designed two PCBs (with approximately 100 components) and sent them to be manufactured
+\end{itemize}
+
+\subsection{Fortem Technologies \hfill Pleasant Grove, UT}
+\subsubsection{Software Engineering Intern \hfill June 2019 - September 2019}
+\begin{itemize}
+	\item Integrated new sensors communicating over I2C and UART into an existing product using C++
+	\item Modified existing microcontroller code written in C to meet evolving product requirements
+\end{itemize}
+
 \section{Certification \& Awards}
 %===============================%
 \begin{enumerate}[label=\null, left=0pt..0pt, itemsep=0pt]
-	\item Some programming bootcamp, Location. \hfill 2023
-	\item Forbes Top 15 Procrastinators under 15. \hfill 2022
-	\item Perticipation award for attending workshop. \hfill 2021
+	\item Crocker Innovation Fellowship \hfill 2019
+	\begin{itemize}
+		\item Interdisciplinary experience combining business and engineering principles of market identification and qualification, design thinking, entrepreneurship, product development, and agile software
+		\item Focused on collaboration, innovation, and product development through the full product lifecycle
+	\end{itemize}
 \end{enumerate}
 
-\section{Skills \& Interests}
+\section{Interests}
 %===========================%
 \begin{description}[itemsep=0pt]
-	\item[Technical] List computer software and programming languages
-	\item[Language] List foreign languages and your level of fluency
-	\item[Laboratory] List scientific / research lab techniques or tools [If Applicable]
-	\item[Interests] List activities you enjoy that may spark interview conversation
+	\item[Language] Fluent in Spanish
+	\item[Interests] Space exploration, CNC machining, 3D printing, and classic rock
 \end{description}
-
-\section{Projects}
-%=================
-\subsection{Project Neme $|$ \normalfont\textit{github.com/project-link} \hfill 2019}
-\begin{itemize}
-  \item Tech used, Language, Frameworks etc.
-  \item Implemented ABC feature
-  \item Optimised XYZ by 50\%
-\end{itemize}
 
 \end{document}
