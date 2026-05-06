@@ -1,0 +1,40 @@
+name: Compile Resume
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'templates/base rover/base-rover.tex'
+      - '.github/workflows/compile-resume.yml'
+  pull_request:
+    paths:
+      - 'templates/base rover/base-rover.tex'
+      - '.github/workflows/compile-resume.yml'
+  workflow_dispatch:
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile base-rover.tex to PDF
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: 'base-rover.tex'
+          working_directory: 'templates/base rover'
+          compiler: latexmk
+          args: '-pdf -interaction=nonstopmode -halt-on-error'
+
+      - name: Rename output to Resume.pdf
+        run: mv 'templates/base rover/base-rover.pdf' 'templates/base rover/Resume.pdf'
+
+      - name: Upload Resume.pdf artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Resume
+          path: 'templates/base rover/Resume.pdf'
+          if-no-files-found: error
